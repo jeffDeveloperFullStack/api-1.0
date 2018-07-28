@@ -14,7 +14,7 @@ class CompraSeeder extends Seeder
     {
     	$faker = Faker\Factory::create('pt_BR');
 
-    	for ($i=0; $i < 5000; $i++) 
+    	for ($i=0; $i < 100; $i++) 
     	{ 
 	    	$compra = new Compra();
 	    	
@@ -23,7 +23,11 @@ class CompraSeeder extends Seeder
 	    	$compra->cpr_valor     = $faker->randomFloat(2, 1, 100);
 	    	$compra->cpr_desconto  = $faker->randomFloat(2, 1, 100);
 	    	
-	    	$compra->save();
+			$compra->save();
+			
+			if($i === ($i / 10)) {
+				DB::statement('COMMIT;');
+			}
     	}
         
     }

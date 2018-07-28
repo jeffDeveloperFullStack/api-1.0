@@ -14,7 +14,7 @@ class ProdutoSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_BR');
 
-        for ($i=0; $i < 2000000; $i++) 
+        for ($i=0; $i < 5000; $i++) 
         { 
             $produto = new Produto();
 
@@ -28,7 +28,11 @@ class ProdutoSeeder extends Seeder
 	        $produto->pro_foto	   = 'imagem_produto_000'.$i.'.jpg';
 	        $produto->pro_ativo    = $faker->boolean(70);
             
-			$produto->save();        
+            $produto->save();
+            
+            if($i === ($i / 10)) {
+				DB::statement('COMMIT;');
+			}
         }
     }
 }

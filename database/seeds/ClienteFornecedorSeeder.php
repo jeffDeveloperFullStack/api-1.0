@@ -16,7 +16,7 @@ class ClienteFornecedorSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_BR');
 
-      	for ($i=0; $i < 10000; $i++) 
+      	for ($i=0; $i < 500; $i++) 
       	{ 
       		$pessoa = new Pessoa();
 
@@ -52,7 +52,11 @@ class ClienteFornecedorSeeder extends Seeder
 		      	$fornecedor->id_pessoa   = $pessoa->id;
 		      	$fornecedor->for_contato = $faker->phoneNumber;
 		      	$fornecedor->save();
-	      	}
-      	}
-    }
+			}
+			  
+			if($i === ($i / 10)) {
+				DB::statement('COMMIT;');
+			}
+		}
+	}
 }

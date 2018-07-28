@@ -14,14 +14,18 @@ class VendaProdutoSeeder extends Seeder
     {
     	$faker = Faker\Factory::create('pt_BR');
 
-    	for ($i=0; $i < 400000; $i++) 
+    	for ($i=0; $i < 5000; $i++) 
     	{ 
 	        $vendaProduto = new VendaProduto();
 	        $vendaProduto->id_venda     = rand(1, DB::table('venda')->max('id'));
 	        $vendaProduto->id_produto   = rand(1, DB::table('produto')->max('id'));
 	        $vendaProduto->vep_qtde     = rand(1, 10);
 	        $vendaProduto->vep_desconto = $faker->randomFloat(2, 1, 10);
-	        $vendaProduto->save();
+			$vendaProduto->save();
+			
+			if($i === ($i / 10)) {
+				DB::statement('COMMIT;');
+			}
     	}
     }
 }

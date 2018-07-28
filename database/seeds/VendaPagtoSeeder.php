@@ -14,12 +14,16 @@ class VendaPagtoSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_BR');
 
-        for ($i=0; $i < 100000; $i++) 
+        for ($i=0; $i < 1000; $i++) 
         { 
 	        $vendaPagto = new VendaPagto();
 	        $vendaPagto->id_formapagto = rand(1, DB::table('formapagto')->max('id'));
 	        $vendaPagto->id_venda      = rand(1, DB::table('venda')->max('id'));
-	        $vendaPagto->save();
+            $vendaPagto->save();
+            
+            if($i === ($i / 10)) {
+				DB::statement('COMMIT;');
+			}
         }
 
     }
