@@ -14,7 +14,7 @@ class ProdutoSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_BR');
 
-        for ($i=0; $i < 200; $i++) 
+        for ($i=0; $i < 2000000; $i++) 
         { 
             $produto = new Produto();
 

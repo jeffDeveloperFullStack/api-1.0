@@ -14,7 +14,7 @@ class VendaPagtoSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_BR');
 
-        for ($i=0; $i < 20; $i++) 
+        for ($i=0; $i < 100000; $i++) 
         { 
 	        $vendaPagto = new VendaPagto();
 	        $vendaPagto->id_formapagto = rand(1, DB::table('formapagto')->max('id'));

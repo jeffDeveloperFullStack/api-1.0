@@ -18,8 +18,8 @@ class CreateLogTable extends Migration
             $table->increments('id')->index();
             $table->string    ('log_operacao', 12)->nullable();
             $table->string    ('log_tabela', 30)->nullable();
-            $table->jsonb     ('log_old')->nullable();
-            $table->jsonb     ('log_new')->nullable();
+            $table->json      ('log_old')->nullable();
+            $table->json      ('log_new')->nullable();
             $table->timestamp ('log_data');
         });
     }

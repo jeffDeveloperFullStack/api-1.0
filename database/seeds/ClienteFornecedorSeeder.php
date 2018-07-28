@@ -16,7 +16,7 @@ class ClienteFornecedorSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_BR');
 
-      	for ($i=0; $i < 50; $i++) 
+      	for ($i=0; $i < 10000; $i++) 
       	{ 
       		$pessoa = new Pessoa();
 

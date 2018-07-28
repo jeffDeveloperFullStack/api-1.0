@@ -14,7 +14,7 @@ class VendaSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pt_BR');
 
-        for ($i=0; $i < 20; $i++) 
+        for ($i=0; $i < 40000; $i++) 
         { 
 	        $venda = new Venda();
 	        $venda->id_usuario   = rand(1, DB::table('usuario')->max('id'));
