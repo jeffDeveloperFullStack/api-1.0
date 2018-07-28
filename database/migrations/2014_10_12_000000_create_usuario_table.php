@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriarTabelaImagem extends Migration
+class CreateUsuarioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CriarTabelaImagem extends Migration
      */
     public function up()
     {
-        Schema::create('imagens', function (Blueprint $table) {
+        Schema::create('usuario', function (Blueprint $table) 
+        {
             $table->increments('id');
-            $table->string('path');
-            $table->string('imagem');
-            $table->integer('heroi_id')->unsigned();
+            $table->string('nome', 80);
+            $table->string('email', 40)->unique();
+            $table->string('senha', 20);
+            $table->boolean('ativo');
+            //$table->rememberToken()->unique();
             $table->timestamps();
-        });
-
-        Schema::table('imagens', function($table) {
-           $table->foreign('heroi_id')->references('id')->on('herois');
         });
     }
 
@@ -33,6 +32,6 @@ class CriarTabelaImagem extends Migration
      */
     public function down()
     {
-        Schema::drop('imagens');
+        Schema::dropIfExists('usuario');
     }
 }

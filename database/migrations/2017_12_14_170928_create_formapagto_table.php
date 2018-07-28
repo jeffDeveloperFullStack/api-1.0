@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriarTabelaEspecialidades extends Migration
+class CreateFormapagtoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CriarTabelaEspecialidades extends Migration
      */
     public function up()
     {
-        Schema::create('especialidades', function (Blueprint $table) {
+        Schema::create('formapagto', function (Blueprint $table) 
+        {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('descricao');
+            $table->string    ('fpg_nome', 80);
+            $table->boolean   ('fpg_ativo')->default(TRUE);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CriarTabelaEspecialidades extends Migration
      */
     public function down()
     {
-        Schema::drop('especialidades'); 
+        Schema::dropIfExists('formapagto');
     }
 }
