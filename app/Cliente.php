@@ -8,6 +8,10 @@ class Cliente extends Model
 {
     protected $table = 'cliente';
 
+    protected $guarded = ['id'];
+
+    protected $primary = 'id_pessoa';
+
     protected $fillable = 
     [
       'id_pessoa',
@@ -22,7 +26,7 @@ class Cliente extends Model
 
     public function venda()
     {
-        return $this->hasMany('App\Venda', 'id');
+        return $this->hasMany('App\Venda', 'id_cliente');
     }
     
     public function pessoa()

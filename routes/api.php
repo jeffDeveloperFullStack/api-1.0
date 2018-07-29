@@ -19,7 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/', function () {
-    return view('readme');
+	echo 'jeferson Oliveira';
+    //return view('readme');
 });
 
 Route::group(['prefix' => 'heroi'], function() {
@@ -44,4 +45,13 @@ Route::group(['prefix' => 'especialidade'], function() {
 	Route::get('/{id}', 			'EspecialidadeController@show');
 	Route::patch('/{id}', 			'EspecialidadeController@update');
 	Route::delete('/{id}', 			'EspecialidadeController@destroy');
+});
+
+// Cliente
+Route::group(['prefix' => 'cliente'], function() {
+	Route::get('/', 				'ClienteController@index');
+	Route::post('/', 				'ClienteController@store');
+	Route::get('/{id}', 			'ClienteController@show');
+	Route::patch('/{id}', 			'ClienteController@update');
+	Route::delete('/{id}', 			'ClienteController@destroy');
 });

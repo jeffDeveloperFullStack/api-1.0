@@ -8,6 +8,8 @@ class Pessoa extends Model
 {
     protected $table = 'pessoa';
 
+    protected $guarded = ['id'];
+
     protected $fillable = 
     [
       'pes_nome',
@@ -36,11 +38,11 @@ class Pessoa extends Model
 
     public function cliente()
     {
-        return $this->hasOne('App\Cliente', 'id');
+        return $this->hasOne('App\Cliente', 'id_pessoa', 'id');
     }
 
     public function fornecedor()
     {
-        return $this->hasOne('App\Fornecedor', 'id');
+        return $this->hasOne('App\Fornecedor', 'id_pessoa', 'id');
     }
 }
