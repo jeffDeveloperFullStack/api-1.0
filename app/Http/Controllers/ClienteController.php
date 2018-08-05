@@ -22,11 +22,28 @@ class ClienteController extends Controller
      * @param Request $request
      * @return type
      */
-    public function index()
+    public function index(Request $request)
     {
-        $m = self::MODEL;
-        $data = $m::with('pessoa')->paginate(10);
-        return $this->listResponse($data);
+        try {
+            $inputs = $request->all();
+            $m = self::MODEL;
+            $query = $m::with('pessoa');
+
+            if (isset($inputs['limit']) && isset($inputs['offset'])) {
+                $data = $query->paginate(
+                    $inputs['limit'],
+                    ['*'],
+                    'page',
+                    $inputs['offset']
+                );
+            } else {
+                $data = $query->get();
+            }
+
+            return $this->listResponse($data);
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+        }
     }
 
     /**
@@ -102,6 +119,7 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         $m = self::MODEL;
         if(!$data = $m::find($id)) {
             return $this->notFoundResponse();
