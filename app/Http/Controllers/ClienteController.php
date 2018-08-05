@@ -119,7 +119,6 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $m = self::MODEL;
         if(!$data = $m::find($id)) {
             return $this->notFoundResponse();
