@@ -17,6 +17,11 @@ class ClienteController extends Controller
 
     protected $validationPatchRules = [];
 
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Manage index request
      * @param Request $request
@@ -75,7 +80,7 @@ class ClienteController extends Controller
             $pessoa->cliente()->create($request->all());
 
             return $this->createdResponse($pessoa);
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             $pessoa = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($pessoa);
         }
@@ -96,7 +101,7 @@ class ClienteController extends Controller
             return $this->notFoundResponse();
         }
         try {
-            if($v->fails()) {
+            if ($v->fails()) {
                 throw new \Exception("ValidationException");
             }
             $cliente->fill($request->all());
@@ -106,7 +111,7 @@ class ClienteController extends Controller
             $cliente->pessoa->save();
 
             return $this->showResponse($cliente);
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             $cliente = ['form_validations' => $v->errors(), 'exception' => $ex->getMessage()];
             return $this->clientErrorResponse($cliente);
         }
@@ -120,7 +125,7 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         $m = self::MODEL;
-        if(!$data = $m::find($id)) {
+        if (!$data = $m::find($id)) {
             return $this->notFoundResponse();
         }
         $data->pessoa()->delete();
